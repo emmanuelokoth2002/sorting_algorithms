@@ -5,41 +5,39 @@
  * @a: first element
  * @b: second element
  */
-void swap(int *xp, int *yp)
+
+void swap(int *a, int *b)
 {
-    int temp = *xp;
-    *xp = *yp;
-    *yp = temp;
+	int temp = *a;
+	*a = *b;
+	*b = temp;
 }
+
 /**
- * selection_sort - sort array, ascending, selection sort
+ * selection_sort - selection sort
  * @array: the array
  * @size: size of array
  */
+
 void selection_sort(int *array, size_t size)
 {
-	size_t i, j, min_idx;
+	size_t i, j, min;
 
 	if (array == NULL || size == 0)
 		return;
 
-	for (i = 0; i < size - 1; i++)
+	for (i = 0; i < (size - 1); i++)
 	{
-	min_idx = i;
-	for (j = i + 1; j < size; j++)
-	{
-		if (array[j] < array[min_idx])
+		min = i;
+		for (j = i; j < size; j++)
 		{
-			min_idx = j;
+			if (array[j] < array[min])
+				min = j;
 		}
-	}
-	swap(&array[min_idx], &array[i]);
-        for (j = 0; j < size; j++)
-	{
-		printf("%d", array[j]);
-		if (j != size - 1)
-			printf(", ");
-	}
-	printf("\n");
+		if (i != min)
+		{
+			swap(&array[min], &array[i]);
+			print_array(array, size);
+		}
 	}
 }
