@@ -8,37 +8,36 @@
 
 size_t get_gap(size_t size)
 {
-	size_t interval = 1;
+	size_t gap = 1;
 
-	while (interval < size)
-		interval = interval * 3 + 1;
-	return ((interval - 1) / 3);
+	while (gap < size)
+		gap = gap * 3 + 1;
+	return ((gap - 1) / 3);
 }
+
 /**
- * shell_sort - Sorts an array of integers in ascending order
- * @array: Array of integers to sort
- * @size: Size of the array
+ * shell_sort - sort array, ascending, shell sort, knuth sequence
+ * @array: pointer to array
+ * @size: size of array
  */
+
 void shell_sort(int *array, size_t size)
 {
-	size_t interval = 1;
-	size_t i, j;
+	size_t x, gap = 1, y;
 	int temp;
 
-	while (interval < size / 3)
-		interval = interval * 3 + 1;
+	if (array == NULL || size == 0)
+		return;
 
-	while (interval > 0)
+	for (gap = get_gap(size); gap; gap = (gap - 1) / 3)
 	{
-		printf("Interval %lu -> ", interval);
-	for (i = interval; i < size; i++)
-	{
-		temp = array[i];
-		for (j = i; j >= interval && array[j - interval] > temp; j -= interval)
-			array[j] = array[j - interval];
-		array[j] = temp;
-	}
-	print_array(array, size);
-	interval = (interval - 1) / 3;
+		for (x = gap; x < size; x++)
+		{
+			temp = array[x];
+			for (y = x; y >= gap && array[y - gap] > temp; y -= gap)
+				array[y] = array[y - gap];
+			array[y] = temp;
+		}
+		print_array(array, size);
 	}
 }
