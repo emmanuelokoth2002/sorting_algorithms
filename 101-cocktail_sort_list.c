@@ -2,7 +2,7 @@
 
 /**
  * cocktail_sort_list - Sorts a doubly linked list of integers
- *                      in ascending order using the Cocktail shaker sort algorithm
+ *                      in ascending order using sort algorithm
  *
  * @list: Pointer to the first element of the list
  *
@@ -17,10 +17,9 @@ void cocktail_sort_list(listint_t **list)
 	if (list == NULL || *list == NULL)
 		return;
 
-	do 
-	{
+	do {
 		swapped = 0;
-		
+
 		for (curr = *list; curr->next != NULL; curr = curr->next)
 		{
 			if (curr->n > curr->next->n)
@@ -67,6 +66,5 @@ void cocktail_sort_list(listint_t **list)
 		print_list(*list);
 		}
 	}
-	}
-	while (swapped);
+	} while (swapped);
 }
